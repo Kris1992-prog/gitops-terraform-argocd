@@ -41,4 +41,10 @@ resource "helm_release" "argocd" {
     name  = "server.service.type"
     value = "NodePort"
   }
+
+  # Specifichiamo una porta NodePort libera (es. 30443)
+  set {
+    name  = "server.service.nodePortHttp"
+    value = "30443"
+  }
 }
