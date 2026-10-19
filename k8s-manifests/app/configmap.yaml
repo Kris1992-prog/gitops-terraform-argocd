@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gitops-demo-config
+  namespace: demo-app
+data:
+  APP_ENV: "production"
+  MESSAGE: "Hello from ArgoCD GitOps Pipeline!"
