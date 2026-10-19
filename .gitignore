@@ -16,3 +16,6 @@ crash.*.log
 # OS files
 .DS_Store
 Thumbs.db
+
+**/terraform.tfstate
+**/terraform.tfstate.*
