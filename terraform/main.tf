@@ -37,14 +37,9 @@ resource "helm_release" "argocd" {
   namespace  = kubernetes_namespace.argocd.metadata[0].name
   version    = "5.46.0"
 
+  # Utilizziamo ClusterIP per evitare conflitti di porte fisse sul cluster locale
   set {
     name  = "server.service.type"
-    value = "NodePort"
-  }
-
-  # Specifichiamo una porta NodePort libera (es. 30443)
-  set {
-    name  = "server.service.nodePortHttp"
-    value = "30443"
+    value = "ClusterIP"
   }
 }
