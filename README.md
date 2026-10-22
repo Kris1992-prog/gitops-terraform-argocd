@@ -1,6 +1,7 @@
 # GitOps & Infrastructure as Code (Terraform + ArgoCD)
 
 Un'infrastruttura dimostrativa basata sui principi **GitOps**, che combina il provisioning automatizzato tramite **Terraform** con la distribuzione continua gestita da **ArgoCD** su un cluster Kubernetes.
+Il repository adotta una netta separazione tra il codice di infrastruttura (IaC) e i manifest applicativi tracciati da ArgoCD, integrando la cifratura nativa dei dati sensibili tramite Bitnami Sealed Secrets.
 
 ---
 
@@ -14,11 +15,12 @@ gitops-terraform-argocd/
 │   ├── main.tf                 # Provider K8s/Helm e installazione automatica di ArgoCD
 │   ├── variables.tf            # Parametri di configurazione
 │   └── outputs.tf              # Output di stato
-├── k8s-manifests/              # Manifest Kubernetes gestiti via GitOps
-│   └── app/
-│       ├── configmap.yaml      # Configurazioni applicative
-│       ├── deployment.yaml     # Deployment con repliche e resource limits
-│       └── service.yaml        # Servizio ClusterIP interno
+k8s-manifests/              # Manifest Kubernetes gestiti via GitOps
+    └── app/
+        ├── configmap.yaml      # Configurazioni applicative
+        ├── deployment.yaml     # Deployment con repliche e resource limits
+        ├── service.yaml        # Servizio ClusterIP interno
+        └── sealed-secret.yaml  # Credenziali applicative cifrate in sicurezza (Sealed Secrets)
 └── argocd/                     # Configurazione delle risorse di ArgoCD
     └── application.yaml        # CRD Application (Collega Git al Cluster)
 └── README.md
